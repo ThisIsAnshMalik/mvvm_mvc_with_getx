@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:mvvm_mvc_with_getx/res/Colors/app_colors.dart';
 
 class Utils {
   // function to change the focus from the current textfield to another with keyboard
@@ -13,7 +14,9 @@ class Utils {
   // toast message util
   static toastMessage(String msg) {
     Fluttertoast.showToast(
-        msg: msg, backgroundColor: Colors.black, gravity: ToastGravity.BOTTOM);
+        msg: msg,
+        backgroundColor: AppColor.blackColor,
+        gravity: ToastGravity.BOTTOM);
   }
 
   //snack bar with getX
