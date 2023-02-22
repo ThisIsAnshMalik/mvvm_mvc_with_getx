@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mvvm_mvc_with_getx/data/app_exception.dart';
-import 'package:mvvm_mvc_with_getx/res/components/general_exception_widget.dart';
-import 'package:mvvm_mvc_with_getx/res/components/internet_exception_widget.dart';
-import 'package:mvvm_mvc_with_getx/res/components/round_button.dart';
+import 'package:mvvm_mvc_with_getx/res/Colors/app_colors.dart';
+import 'package:mvvm_mvc_with_getx/view_models/services/splash_services.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -13,10 +10,24 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  SplashServices splashServices = SplashServices();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    splashServices.isLogin();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text('email_hint'.tr)),
-        body: RoundeButton(title: "helo", onPress: (() {})));
+    return const Scaffold(
+      backgroundColor: AppColor.primaryColor,
+      body: Center(
+        child: CircularProgressIndicator(
+          color: AppColor.blackColor,
+        ),
+      ),
+    );
   }
 }

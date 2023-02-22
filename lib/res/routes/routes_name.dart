@@ -3,5 +3,5 @@ class RouteName {
   static const String splashScreen = '/';
 
   //other routes are declared as below
-  static const String loginScreen = '/login_screen';
+  static const String loginView = '/login_view';
 }
