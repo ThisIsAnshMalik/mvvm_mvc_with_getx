@@ -23,21 +23,23 @@ class NetworkApiServices extends BaseApiServices {
     } on RequestTimeOut {
       throw RequestTimeOut("");
     }
-
+    if (kDebugMode) {
+      print(responseJson);
+    }
     return responseJson;
   }
 
   @override
   Future<dynamic> postApi(var data, String url) async {
     if (kDebugMode) {
-      print(url);
-      print(data);
+      print("url :- ${url.toString()}");
+      print("data :- ${data.toString()}");
     }
 
     dynamic responseJson;
     try {
       final response = await http
-          .post(Uri.parse(url), body: jsonEncode(data))
+          .post(Uri.parse(url), body: data)
           .timeout(const Duration(seconds: 10));
       responseJson = resturnResponce(response);
     } on SocketException {
@@ -45,7 +47,9 @@ class NetworkApiServices extends BaseApiServices {
     } on RequestTimeOut {
       throw RequestTimeOut("");
     }
-
+    if (kDebugMode) {
+      print(responseJson);
+    }
     return responseJson;
   }
 
@@ -56,7 +60,8 @@ class NetworkApiServices extends BaseApiServices {
         return responseJson;
 
       case 400:
-        throw InvalidUrlException("");
+        dynamic responseJson = jsonDecode(response.body);
+        return responseJson;
 
       default:
         throw FetchDataException(response.statusCode.toString());

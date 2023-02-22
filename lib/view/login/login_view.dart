@@ -62,12 +62,17 @@ class _LoginViewState extends State<LoginView> {
                 SizedBox(
                   height: Get.height * 0.04,
                 ),
-                RoundeButton(
-                    width: Get.width * 0.4,
-                    title: "login".tr,
-                    onPress: (() {
-                      if (_formKey.currentState!.validate()) {}
-                    }))
+                Obx((() {
+                  return RoundeButton(
+                      loading: loginVM.loading.value,
+                      width: Get.width * 0.4,
+                      title: "login".tr,
+                      onPress: (() {
+                        if (_formKey.currentState!.validate()) {
+                          loginVM.login();
+                        }
+                      }));
+                }))
               ],
             ),
           ),
